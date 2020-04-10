@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api")
 public class ScolariteAPI {
@@ -31,5 +33,15 @@ public class ScolariteAPI {
         return  etudiant;
     }
 
+    @GetMapping("/etudiants")
+    public List<Etudiant> getEtudiantsWithFormation()
+    {
+       List<Etudiant> etudiants= etudiantRepository.findAll();
+
+       etudiants.forEach(e->
+                e.setFormation(formationProxy.getFormation(e.getIdFormation())));
+
+       return etudiants;
+    }
 
 }

@@ -1,13 +1,12 @@
 package com.esi.msformation.entities;
 
+import com.esi.msformation.model.Etudiant;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor
@@ -19,4 +18,6 @@ public class Formation {
     private String nom;
     private int duree;
 
+    @Transient
+    private Collection<Etudiant> etudiants;
 }
